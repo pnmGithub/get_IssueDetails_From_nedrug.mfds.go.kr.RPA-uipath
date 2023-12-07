@@ -1,0 +1,21 @@
+
+'-----------------------------------------------------------------------------
+'    UiPath에서 함수 호출 시 파라미터 전달하기
+'    UiPath > Invoke VBA > 속성 > EntryMethodParameters > 리스트 형태로 전달
+'        사용예)  {"파라미터1", "파라미터2"...}  
+'        함수 파라미터 순서대로 넣어줘야 함
+'        셀 범위 설정할 때 A:A = A 전체, A1:A5 = A1부터 A5까지
+'-----------------------------------------------------------------------------
+
+' 엑실 시트명 변경하기
+Sub chgSheetName(preSheetName, newSheetName)
+	On Error Resume Next 			' 에러 발생 시 무시하고 계속 진행
+	
+	Dim ws As Worksheet
+	Set targetSheet = Worksheets(preSheetName)
+	
+	If Not targetSheet Is Nothing Then		' 변경할 시트명 있으면 처리
+		targetSheet.Name = newSheetName
+	End If
+
+End Sub

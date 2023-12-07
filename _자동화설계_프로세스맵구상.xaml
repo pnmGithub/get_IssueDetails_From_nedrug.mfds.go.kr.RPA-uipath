@@ -1,0 +1,234 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="자동화설계_프로세스맵구상" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="905.6,1900.8" sap2010:WorkflowViewState.IdRef="자동화설계_프로세스맵구상_액티비티선정_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="[의약품 안전나라] - https://nedrug.mfds.go.kr/&#xA;- 의약품 안전나라 사이트에 접속하여 취합한 자료 중 이슈 내역을 정리하여 담당자에게 공유&#xA;&#xA;[참고] &#xA;dt_TransactionData = DataTable&#xA;TransactionItem = DataRow&#xA;&#xA;프로젝트명         : RPA_02_의약품안전나라_본인이름&#xA;결과 파일 명       : 의약품_행정처분_조회내역_{yyMM}.xlsx&#xA;&#xA;[작업순서]&#xA;1. [의약품 안전나라] 사이트 접속 &gt; [고시/공고/알림] 클릭 &gt; [행정처분정보] 클릭&#xA;2. 검색 조건 세팅 - 품목구분 = 의약품등, 처분일자기간 = 전월 1일 ~ 당월 마지막날까지 &gt; [검색] 클릭&#xA;3. 검색 결과 데이터스크래핑 - [순번], [업체명], [URL] =&gt; TransactionData&#xA;4. NavigateTo 행정처분정보 페이지로 이동. 필요한 항목 가져오기 [업체명], [처분일자], [위반내역], [처분사항] =&gt; &quot;데이터테이블A&quot;&#xA;5. &quot;데이터테이블A&quot; 에서 이슈사항 필터링해서 &quot;데이터테이블B&quot;에 저장&#xA;6. &quot;데이터테이블B&quot; 에서 처분일자 필터링해서 &quot;데이터테이블C&quot;에 저장&#xA;7. 엑셀 각 시트에 해당 내용 쓰기&#xA;8. 결과파일 첨부하여 메일발송&#xA;&#xA;[추가된 파일(Invoke) 정보]&#xA;Initalization &gt; Bizwork\CreateFolderFile.xaml&#xA;   - 폴더, 파일 처리. 폴더 없으면 생성, 파일 있으면 삭제&#xA;EndProcess &gt; Bizwork\WriteExcelFile.xaml&#xA;   - 엑셀 파일 쓰기&#xA;EndProcess &gt; Bizwork\GetHTMLTableTagFromDataTable.xaml&#xA;   - DataTable 데이터를 표 형태로(Table tag)로 변환&#xA;EndProcess &gt; Bizwork\SendOutlookMail.xaml&#xD;&#xA;   - 결과메일발송&#xA;&#xA;[Config 참고]&#xA;strExcelMacroFile : 엑셀에 적용할 레이아웃 VBA&#xD;&#xA;strWebUrl : 의약품 안전나라 URL&#xD;&#xA;strTemplateFile : 엑셀 결과파일 템플릿&#xD;&#xA;strResultFolder : 결과파일 저장 폴더&#xD;&#xA;strResultFile : 결과파일명&#xD;&#xA;strSearchItem : 행정처분정보&gt;품목구분 (전체, 의약품등, 화장품) - 추후 품목 변경해서 추출하고자 할 경우를 대비&#xD;&#xA;strFilterColumn : 필터링 적용할 컬럼&#xD;&#xA;strFilterKeywords : 필터링 키워드들 (변경될 것을 대비해 config에서 관리)&#xD;&#xA;strToMailAccount : 결과메일 수신자&#xD;&#xA;strCCMailAccount : CC 메일계정&#xD;&#xA;strOutlookAccount : 아웃룩 메일 계정&#xD;&#xA;strMailSubject : 메일 제목 [보내는사람이름] 00월 의약품 안전나라 행정처분사항 공유&#xD;&#xA;strMailBody : 메일 내용(이슈사항 테이블 포함) - html&#xD;&#xA;&#xD;&#xA;[예외사항 체크]&#xD;&#xA;1. 검색조건 &gt; 품목구분 &gt; Select Item에 없는 항목 넣을경우 (Config)&#xD;&#xA;2. 검색 결과 없을 경우 - TransactionData = nothing 처리" DisplayName="자동화설계_프로세스맵구상" sap:VirtualizedContainerService.HintSize="916,1836" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="853.6,944" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="818.4,865.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <StateMachine InitialState="{x:Reference __ReferenceID1}" DisplayName="프로세스 맵 구상하기" sap:VirtualizedContainerService.HintSize="756,753.6" sap2010:WorkflowViewState.IdRef="StateMachine_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <av:Point x:Key="ShapeLocation">10,2.3999999999999986</av:Point>
+                <x:Double x:Key="StateContainerWidth">722.4</x:Double>
+                <x:Double x:Key="StateContainerHeight">716.4000000000001</x:Double>
+                <av:PointCollection x:Key="ConnectorLocation">67,77.6 67,101.04 153.59999999999997,101.04</av:PointCollection>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="* Config.xlsx 설정&#xA;* 브라우저(Chrome, Excel) 강제종료&#xA;* 폴더, 파일 관리(폴더 있으면 삭제 후 생성, 파일 있으면 삭제)&#xA;&#xA;1. [의약품 안전나라] 사이트 접속 &gt; [고시/공고/알림] 클릭 &gt; [행정처분정보] 클릭&#xA;2. 검색 조건 세팅 &#xA;   - 품목구분 = 의약품등, 처분일자기간 = 전월 1일 ~ 당월 마지막날까지 &gt; [검색] 클릭&#xA;3. 검색 결과 데이터스크래핑 - [순번], [업체명], [URL] =&gt; TransactionData&#xD;&#xA; &gt; 품목구분 select item에 config에 설정한 항목 없을 경우 =&gt; TransactionData=nothing&#xD;&#xA; &gt; 검색 결과 없을 경우 =&gt; TransactionData=nothing" DisplayName="[초기화 영역] Initialization" sap:VirtualizedContainerService.HintSize="513.6,249.6" sap2010:WorkflowViewState.IdRef="State_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">153.59999999999997,1.2000000000000028</av:Point>
+                  <av:Size x:Key="ShapeSize">513.6,249.6</av:Size>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Double x:Key="StateContainerWidth">479.9999999999999</x:Double>
+                  <x:Double x:Key="StateContainerHeight">25</x:Double>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <State.Transitions>
+                <Transition DisplayName="" sap2010:WorkflowViewState.IdRef="Transition_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:PointCollection x:Key="ConnectorLocation">436.08,250.8 436.08,280.8 488,280.8 488,293.6</av:PointCollection>
+                      <x:Int32 x:Key="SrcConnectionPointIndex">43</x:Int32>
+                      <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Transition.To>
+                    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="* 처리할 TransactionItem 체크" DisplayName="[처리할 데이터 세팅 영역] Get Transaction Data" sap:VirtualizedContainerService.HintSize="324.8,92.8" sap2010:WorkflowViewState.IdRef="State_8">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">325.6,293.6</av:Point>
+                          <av:Size x:Key="ShapeSize">324.8,92.8</av:Size>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Double x:Key="StateContainerWidth">291.1999999999999</x:Double>
+                          <x:Double x:Key="StateContainerHeight">25</x:Double>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <State.Transitions>
+                        <Transition DisplayName="No Data" sap2010:WorkflowViewState.IdRef="Transition_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:PointCollection x:Key="ConnectorLocation">455.52000000000004,386.40000000000003 455.52000000000004,607.2 268.96000000000004,607.2 268.96000000000004,577.2</av:PointCollection>
+                              <x:Int32 x:Key="SrcConnectionPointIndex">31</x:Int32>
+                              <x:Int32 x:Key="DestConnectionPointIndex">47</x:Int32>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Transition.To>
+                            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="* 브라우저 닫기&#xD;&#xA;* TransactionData isNot Nothing 일 경우 아래 진행&#xA; 5. &quot;데이터테이블A&quot; 에서 이슈사항 필터링해서 &quot;데이터테이블B&quot;에 저장&#xA; 6. &quot;데이터테이블B&quot; 에서 처분일자 필터링해서 &quot;데이터테이블C&quot;에 저장&#xA; 7. 엑셀 각 시트에 해당 내용 쓰기&#xA; 8. 결과파일 첨부하여 메일발송" DisplayName="[프로젝트 결과 처리 및 메일발송] End Process" sap:VirtualizedContainerService.HintSize="433.6,180" sap2010:WorkflowViewState.IdRef="State_7" IsFinal="True">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">8.799999999999997,397.2</av:Point>
+                                  <av:Size x:Key="ShapeSize">433.6,180</av:Size>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  <x:Double x:Key="StateContainerWidth">399.99999999999994</x:Double>
+                                  <x:Double x:Key="StateContainerHeight">35.2799999999998</x:Double>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </State>
+                          </Transition.To>
+                        </Transition>
+                        <Transition DisplayName="New Transaction" sap2010:WorkflowViewState.IdRef="Transition_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:PointCollection x:Key="ConnectorLocation">585.44,386.40000000000003 585.44,416.40000000000003 586.08,416.40000000000003 586.08,609.2</av:PointCollection>
+                              <x:Int32 x:Key="SrcConnectionPointIndex">63</x:Int32>
+                              <x:Int32 x:Key="DestConnectionPointIndex">70</x:Int32>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Transition.To>
+                            <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="4. NavigateTo 행정처분정보 페이지로 이동. 필요한 항목 가져오기 [업체명], [처분일자], [위반내역], [처분사항] =&gt; &quot;데이터테이블A&quot;" DisplayName="[프로세스 진행] Process Transaction" sap:VirtualizedContainerService.HintSize="651.2,107.2" sap2010:WorkflowViewState.IdRef="State_6">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">0,609.2</av:Point>
+                                  <av:Size x:Key="ShapeSize">651.2,107.2</av:Size>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  <x:Double x:Key="StateContainerWidth">617.6</x:Double>
+                                  <x:Double x:Key="StateContainerHeight">26.47999999999979</x:Double>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <State.Transitions>
+                                <Transition DisplayName="처리성공" sap:VirtualizedContainerService.HintSize="448.8,510.4" sap2010:WorkflowViewState.IdRef="Transition_9">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:PointCollection x:Key="ConnectorLocation">651.2,646.72 681.2,646.72 681.2,344.64000000000004 650.4000000000001,344.64000000000004</av:PointCollection>
+                                      <x:Int32 x:Key="SrcConnectionPointIndex">24</x:Int32>
+                                      <x:Int32 x:Key="DestConnectionPointIndex">40</x:Int32>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Transition.To>
+                                    <x:Reference>__ReferenceID0</x:Reference>
+                                  </Transition.To>
+                                </Transition>
+                                <Transition DisplayName="예외발생(비지니스)" sap2010:WorkflowViewState.IdRef="Transition_10">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:PointCollection x:Key="ConnectorLocation">651.2,662.8000000000001 681.2,662.8000000000001 681.2,321.44000000000005 650.4000000000001,321.44000000000005</av:PointCollection>
+                                      <x:Int32 x:Key="SrcConnectionPointIndex">36</x:Int32>
+                                      <x:Int32 x:Key="DestConnectionPointIndex">20</x:Int32>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Transition.To>
+                                    <x:Reference>__ReferenceID0</x:Reference>
+                                  </Transition.To>
+                                </Transition>
+                                <Transition DisplayName="예외발생" sap2010:WorkflowViewState.IdRef="Transition_11">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:PointCollection x:Key="ConnectorLocation">651.2,678.8800000000001 681.2,678.8800000000001 681.2,113.52 667.2,113.52</av:PointCollection>
+                                      <x:Int32 x:Key="SrcConnectionPointIndex">48</x:Int32>
+                                      <x:Int32 x:Key="DestConnectionPointIndex">32</x:Int32>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Transition.To>
+                                    <x:Reference>__ReferenceID1</x:Reference>
+                                  </Transition.To>
+                                </Transition>
+                              </State.Transitions>
+                            </State>
+                          </Transition.To>
+                        </Transition>
+                      </State.Transitions>
+                    </State>
+                  </Transition.To>
+                </Transition>
+                <Transition DisplayName="예외처리" sap2010:WorkflowViewState.IdRef="Transition_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:PointCollection x:Key="ConnectorLocation">384.71999999999997,250.8 384.71999999999997,280.8 160.56,280.8 160.56,397.2</av:PointCollection>
+                      <x:Int32 x:Key="SrcConnectionPointIndex">35</x:Int32>
+                      <x:Int32 x:Key="DestConnectionPointIndex">26</x:Int32>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Transition.To>
+                    <x:Reference>__ReferenceID2</x:Reference>
+                  </Transition.To>
+                </Transition>
+              </State.Transitions>
+            </State>
+            <x:Reference>__ReferenceID2</x:Reference>
+            <x:Reference>__ReferenceID0</x:Reference>
+            <x:Reference>__ReferenceID3</x:Reference>
+          </StateMachine>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>
