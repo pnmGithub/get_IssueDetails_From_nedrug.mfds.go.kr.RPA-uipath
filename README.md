@@ -51,7 +51,7 @@
    + [의약품 안전나라] 사이트 접속 > [고시/공고/알림] 클릭 > [행정처분정보] 클릭
    + 검색 조건 세팅 - 품목구분 = 의약품등, 처분일자기간 = 전월 1일 ~ 당월 마지막날까지 > [검색] 클릭
    + 검색 결과 데이터스크래핑 - [순번], [업체명], [URL] => TransactionData
-   +  - 품목구분 select item에 config에 설정한 항목 없을 경우 => TransactionData=nothing
+      - 품목구분 select item에 config에 설정한 항목 없을 경우 => TransactionData=nothing
       - 검색 결과 없을 경우 => TransactionData=nothing
 
 2. **GET TRANSACTION DATA**
@@ -65,10 +65,12 @@
 4. **END PROCESS**
    + 브라우저 닫기
    + TransactionData isNot Nothing 일 경우 아래 진행
-   +  - "데이터테이블A" 에서 이슈사항 필터링해서 "데이터테이블B"에 저장
+      - "데이터테이블A" 에서 이슈사항 필터링해서 "데이터테이블B"에 저장
       - "데이터테이블B" 에서 처분일자 필터링해서 "데이터테이블C"에 저장
       - 엑셀 각 시트에 해당 내용 쓰기
       - 결과파일 첨부하여 메일발송
+    ![get_IssueDetails_From_nedrug mfds go kr_mail](https://github.com/pnmGithub/get_IssueDetails_From_nedrug.mfds.go.kr.RPA-uipath/assets/149296871/1a2c431e-ca71-446f-b0b9-d06791bc10ae)
+
 
 * * *
 ![get_IssueDetails_From_nedrug mfds go kr_guide](https://github.com/pnmGithub/get_IssueDetails_From_nedrug.mfds.go.kr.RPA-uipath/assets/149296871/c7f24481-3431-40ad-9567-477f1d5f5eda)
